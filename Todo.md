@@ -1,0 +1,6 @@
+- When there are no tasks, hide pomodoro
+- Make pomodoro work with web worker
+- When last item in the task gets finished, hide pomodoro
+- Highlight currently active task in a different color
+- Grey out completed tasks
+- When a pomodoro timer completes show a push notification.
