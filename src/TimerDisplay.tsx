@@ -1,4 +1,5 @@
 import React from "react";
+import { secondsToMinutesAndSeconds } from "./helper";
 
 interface TimerDisplayProps {
     label: string;
@@ -25,7 +26,7 @@ const TimerDisplay = ({
             <p className="text-xs">
                 Resting Time:{" "}
                 <span className="text-yellow-300 font-bold">
-                    {rest} minutes
+                    {secondsToMinutesAndSeconds(rest)[0]} minutes
                 </span>
             </p>
         </>

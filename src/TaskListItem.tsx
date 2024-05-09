@@ -1,6 +1,8 @@
+import { TaskEntry } from "./data";
+import { secondsToMinutesAndSeconds } from "./helper";
+
 interface TaskListItemProps {
     label: string;
-    minutes: number;
     seconds: number;
     handleDelete: (id: string) => void;
     handleSort: () => void;
@@ -8,21 +10,21 @@ interface TaskListItemProps {
     draggedOverTask: React.MutableRefObject<number>;
     index: number;
     id: string;
+    currentTask?:TaskEntry
 }
 
 const TaskListItem = ({
     handleDelete = () => {},
     handleSort = () => {},
-    minutes = 20,
     seconds = 35,
     label = "Task name here",
     dragTask,
     draggedOverTask,
     index,
+    currentTask,
     id,
 }: TaskListItemProps) => {
-    const timerMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
-    const timerSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    const [timerMinutes,timerSeconds] = secondsToMinutesAndSeconds(seconds);
 
     return (
         <li
@@ -40,12 +42,14 @@ const TaskListItem = ({
             <p className="text-gray-500 px-4">
                 {timerMinutes}m {timerSeconds}s
             </p>
-            <button
-                onClick={() => handleDelete(id)}
-                className="rounded-md border border-red-500 bg-red-950 px-3 py-2"
-            >
-                ❌
-            </button>
+         {(currentTask?.id !== id)&&
+          <button
+          onClick={() => handleDelete(id)}
+          className="rounded-md border border-red-500 bg-red-950 px-3 py-2"
+      >
+          ❌
+      </button>
+         } 
         </li>
     );
 };
