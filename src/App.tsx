@@ -26,7 +26,7 @@ const App = () => {
     const [seconds, setSeconds] = useState<number>(0);
     const [isResting, setIsResting] = useState<boolean>(false);
     const [currentTask, setCurrentTask] = useState<TaskEntry | undefined>();
-    const [isTimerPaused,setIsTimerPaused] = useState<boolean> (false);   
+    const [isTimerPaused,setIsTimerPaused] = useState<boolean> (true);   
     useEffect(() => {
         if (tasks.length) {
             const task = tasks[0];
@@ -73,6 +73,8 @@ useEffect(()=>{
    
 useEffect(()=>{
     setCurrentTask(tasks[0])
+    setSeconds(tasks[0].seconds)
+    
     },[])
 
     const dragTask = useRef<number>(0);
